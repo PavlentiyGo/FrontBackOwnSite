@@ -1,118 +1,112 @@
-// Ждем, пока DOM будет полностью загружен
+
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- Данные о проектах ---
-    // Важно: убедитесь, что индекс массива соответствует ID карточки (например, card1 -> projects[0])
-    // Пути к изображениям указаны относительно файла pages/projects.html
+
     const projects = [
         {
             title: "Личный сайт",
-            description: "Описание проекта Личный сайт. Расскажите о его целях, использованных технологиях, особенностях дизайна и функциональности.",
-            image: "../images/photo_2025-10-27_13-02-31.jpg", // Путь к изображению (относительно pages/)
-            links: [ // Массив ссылок (может быть пустым)
-                
-                { text: "Репозиторий", url: "https://github.com/username/project1" } // Исправлен пробел в URL
+            description: "Первый сайт, созданный в рамках дисциплины Фронтэнд и Бекэнд разработка",
+            image: "../images/photo_2025-10-29_23-04-11.jpg", 
+            links: [
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" } 
             ]
         },
         {
             title: "Todo-приложение",
-            description: "Описание проекта Todo-приложение. Опишите, как оно работает, какие функции реализованы, какие навыки показывает.",
-            image: "../images/photo_2025-10-27_09-06-29.jpg", // Путь к изображению (относительно pages/)
+            description: "Todo-приложение, созданное с помощью Js, позволяющее отслеживать задачи, которые уже выполнены или нужно выполнить",
+            image: "../images/to_do.jpg",
             links: [
-                { text: "Посмотреть демо", url: "https://example.com/demo2" }, // Исправлен пробел в URL
-                { text: "Репозиторий", url: "https://github.com/username/project2" } // Исправлен пробел в URL
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" }
             ]
         },
         {
             title: "Интернет-магазин",
-            description: "Описание проекта Интернет-магазин. Расскажите о стеке технологий, архитектуре, реализованных фичах (например, корзина, фильтры).",
-            image: "../images/photo_2025-10-27_13-39-40.jpg", // Путь к изображению (относительно pages/)
+            description: "Пока что тут пусто, но уверен, что скоро эта вкладка обновится",
+            image: "../images/photo_2025-10-29_23-11-48.jpg",
             links: [
-                { text: "Репозиторий", url: "https://github.com/username/project3" } // Исправлен пробел в URL
+                { text: "Репозиторий(пусто)", url: "" }
             ]
         },
         {
             title: "Портфолио",
-            description: "Описание проекта Портфолио. Объясните, какова его цель, какие навыки он демонстрирует, как реализована адаптивность и навигация.",
-            image: "../images/photo_2025-10-29_22-50-25.jpg", // Путь к изображению (относительно pages/)
+            description: "Это этот сайт, на нём расположены все мои проекты, сайт создан с помощью Bootstap",
+            image: "../images/photo_2025-10-29_22-50-25.jpg", 
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBackOwnSite" } // Пример ссылки на ваш GitHub
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBackOwnSite" }
             ]
         },
         {
             title: "Приложение интернет магазина",
-            description: "Декстопное приложение на С# с использованием PostgreSQL. Windows Forms приложение для управления базой данных магазина с использованием PostgreSQL. Проект предоставляет полный функционал для работы с клиентами, товарами и заказами.",
-            image: "../images/photo_2025-10-29_22-12-59.jpg", // Путь к изображению (относительно pages/)
+            description: "Windows Forms приложение на C# для управления базой данных магазина с использованием PostgreSQL. Проект предоставляет полный функционал для работы с клиентами, товарами и заказами.",
+            image: "../images/photo_2025-10-29_22-12-59.jpg", 
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" } // Пример ссылки на ваш GitHub
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" }
             ]
         },
         {
             title: "Судоку на Qt",
             description: "Декстопное приложение судоку с использованием Qt",
-            image: "../images/download.jpg", // Путь к изображению (относительно pages/)
+            image: "../images/download.jpg", 
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" } // Пример ссылки на ваш GitHub
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" }
             ]
         },
         {
             title: "Рандомное приложение",
             description: "Я правда не придумал ещё одного проекта, но вы можете перейти по ссылке, чтобы посмотреть смешное видео",
-            image: "../images/i.jpg", // Путь к изображению (относительно pages/)
+            image: "../images/i.jpg", 
             links: [
-                { text: "Видео", url: "https://www.youtube.com/watch?v=oHg5SJYRHA0" } // Пример ссылки на ваш GitHub
+                { text: "Видео", url: "https://www.youtube.com/watch?v=oHg5SJYRHA0" } 
             ]
         }
     ];
 
-    // --- Обработка кликов по карточкам проектов (по ID) ---
+    
     const container = document.getElementById("projects-container");
     if (container) {
         container.addEventListener("click", function (event) {
-            // Находим ближайший родительский элемент с id, начинающимся на "card"
+            
             const card = event.target.closest('[id^="card"]');
             if (card) {
                 const cardId = card.id;
-                // Извлекаем номер из ID (например, "card1" -> 1, затем индекс 0)
+                
                 const projectId = parseInt(cardId.replace('card', ''), 10) - 1;
 
                 if (!isNaN(projectId) && projectId >= 0 && projectId < projects.length) {
                     const project = projects[projectId];
-                    console.log(`Открывается модальное окно для: ${project.title}`); // Логика в консоль (опционально)
+                    console.log(`Открывается модальное окно для: ${project.title}`);
 
-                    // Находим элементы модального окна
+                   
                     const modalTitle = document.getElementById('projectModalLabel');
                     const modalImage = document.getElementById('modalImage');
                     const modalDescription = document.getElementById('modalDescription');
                     const modalLinksContainer = document.getElementById('modalLinks');
 
-                    // Заполняем модальное окно данными проекта
+                    
                     if (modalTitle) modalTitle.textContent = project.title;
                     if (modalImage) {
                         modalImage.src = project.image;
-                        modalImage.alt = project.title; // Хорошая практика - альтернативный текст
+                        modalImage.alt = project.title; 
                     }
                     if (modalDescription) modalDescription.textContent = project.description;
 
-                    // Очищаем и заполняем контейнер для ссылок
+                
                     if (modalLinksContainer) {
-                        modalLinksContainer.innerHTML = ''; // Очищаем предыдущие ссылки
+                        modalLinksContainer.innerHTML = ''; 
                         if (project.links && project.links.length > 0) {
                             project.links.forEach(link => {
                                 const linkElement = document.createElement('a');
                                 linkElement.href = link.url;
-                                linkElement.className = 'btn btn-outline-primary me-2 mb-2'; // Классы для стилизации кнопки
+                                linkElement.className = 'btn btn-outline-primary me-2 mb-2'; 
                                 linkElement.textContent = link.text;
-                                linkElement.target = '_blank'; // Открывать в новой вкладке
+                                linkElement.target = '_blank';
                                 modalLinksContainer.appendChild(linkElement);
                             });
                         } else {
-                            // Если ссылок нет, можно добавить текст или оставить пустым
+                        
                             modalLinksContainer.textContent = 'Ссылки отсутствуют.';
                         }
                     }
-
-                    // Показываем модальное окно Bootstrap
                     const modalElement = document.getElementById('projectModal');
                     if (modalElement) {
                         const bsModal = new bootstrap.Modal(modalElement);
@@ -125,13 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Обработка фильтрации карточек проектов ---
+    
     const filterButtons = document.querySelectorAll('.filter-btn');
 
     function filterProjects(category) {
-        const projectsContainer = document.getElementById('projects-container'); // Используем локально
+        const projectsContainer = document.getElementById('projects-container');
         if (projectsContainer) {
-            // Предполагается, что у карточек есть класс project-card и атрибут data-category
+            
             const cards = projectsContainer.querySelectorAll('.project-card');
             cards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
@@ -154,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // По умолчанию показываем все проекты и выделяем кнопку 'Все'
+    
     if (filterButtons.length > 0) {
         const allButton = document.querySelector('.filter-btn[data-filter="all"]');
         if (allButton) {
@@ -163,12 +157,9 @@ document.addEventListener('DOMContentLoaded', function () {
         filterProjects('all');
     }
 
-    // --- Обработка отправки формы контактов ---
-    // Обратите внимание: на странице pages/projects.html, скорее всего, нет формы с id 'contactForm'.
-    // Если форма есть только на другой странице (например, contacts.html), этот блок можно удалить из этого файла.
     const form = document.getElementById('contactForm');
 
-    if (form) { // Условие проверит, существует ли форма на текущей странице
+    if (form) { 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
 
@@ -181,10 +172,6 @@ document.addEventListener('DOMContentLoaded', function () {
             const message = messageInput.value.trim();
 
             if (name && email && message) {
-                // alert('Сообщение отправлено!'); // <-- Закомментировано или удалено
-                // form.reset(); // <-- Можно оставить, если нужно очистить форму после отправки
-
-                // Показываем модальное окно Bootstrap
                 const successModalElement = document.getElementById('successModal');
                 if (successModalElement) {
                     const bsSuccessModal = new bootstrap.Modal(successModalElement);
@@ -195,4 +182,86 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-});
+
+    
+    
+    const addEntryButton = document.getElementById('add-entry-btn');
+    
+    const diaryModalElement = document.getElementById('addDiaryEntryModal');
+    const newEntryTextInput = document.getElementById('newEntryText');
+    const saveEntryButton = document.getElementById('saveNewEntryBtn');
+    const statusCompletedRadio = document.getElementById('statusCompleted');
+    const statusInProgRadio = document.getElementById('statusInProg');
+
+    if (addEntryButton && diaryModalElement && newEntryTextInput && saveEntryButton) {
+        
+        addEntryButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            console.log("Кнопка 'Добавить запись' нажата! Открываем модальное окно.");
+            const bsModal = new bootstrap.Modal(diaryModalElement);
+            bsModal.show();
+            
+            newEntryTextInput.value = '';
+            statusCompletedRadio.checked = true; 
+        });
+
+    
+        saveEntryButton.addEventListener('click', function(event) {
+            event.preventDefault();
+
+            const newEntryTextValue = newEntryTextInput.value.trim();
+            let statusValue = 'completed'; 
+            if (statusInProgRadio.checked) {
+                statusValue = 'in_progress';
+            }
+
+            if (newEntryTextValue) {
+                console.log(`Добавляем новую запись: "${newEntryTextValue}", статус: "${statusValue}"`);
+
+                
+                const progressListContainer = document.querySelector('.mt-4.p-4.bg-white.border.rounded.shadow-sm');
+                if (progressListContainer) {
+                    
+                    const newListItem = document.createElement('li');
+                    newListItem.className = 'mb-2 d-flex align-items-center';
+
+                    
+                    const span = document.createElement('span');
+                    span.className = 'me-2 badge'; 
+
+                    
+                    if (statusValue === 'completed') {
+                        span.classList.add('bg-success');
+                        const icon = document.createElement('i');
+                        icon.className = 'bi bi-check-circle-fill text-success ms-auto';
+                        newListItem.appendChild(span);
+                        newListItem.appendChild(icon);
+                    } else if (statusValue === 'in_progress') {
+                        span.classList.add('bg-warning', 'text-dark'); 
+                        const statusBadge = document.createElement('span');
+                        statusBadge.className = 'badge bg-warning text-dark ms-auto';
+                        statusBadge.textContent = 'in progress';
+                        newListItem.appendChild(span);
+                        newListItem.appendChild(statusBadge);
+                    }
+
+                    
+                    span.textContent = newEntryTextValue;
+                    const list = progressListContainer.querySelector('#progress-list'); 
+                    if (list) {
+                        list.insertBefore(newListItem, list.firstChild);
+                    }
+                    const bsModalInstance = bootstrap.Modal.getInstance(diaryModalElement);
+                    if (bsModalInstance) {
+                        bsModalInstance.hide();
+                    }
+                } else {
+                    console.error("Контейнер списка прогресса не найден.");
+                }
+            } else {
+                 alert("Пожалуйста, введите текст записи.");
+            }
+        });
+    }
+
+}); 

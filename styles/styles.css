@@ -1,18 +1,11 @@
 header {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-/* Вы можете добавить сюда дополнительные стили, если необходимо */
-/* Например, стили для карточек или модального окна */
-
-/* Пример стиля для изображения в модальном окне */
 #modalImage {
     max-height: 400px;
     object-fit: cover;
-    border-radius: 0.375rem; /* border-radius от Bootstrap */
+    border-radius: 0.375rem; 
 }
-
-/* Пример стиля для кнопок ссылок в модальном окне */
 #modalLinks .btn {
     text-decoration: none;
 }

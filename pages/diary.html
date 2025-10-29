@@ -5,14 +5,12 @@
   <meta charset="UTF-8">
   <title>Дневник - Портфолио</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Исправлены URL: убраны лишние пробелы -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="../styles/styles.css"> 
 </head>
 
 <body class="bg-light">
-  <!-- Hero-секция -->
   <header class="bg-dark text-white py-5">
     <div class="container text-center">
       <i class="bi bi-emoji-sunglasses" style="font-size: 2.5rem; display: block; margin-bottom: 1rem;"></i>
@@ -20,16 +18,16 @@
     </div>
   </header>
 
-  <!-- Navbar на всю ширину с разделительной линией СВЕРХУ -->
+ 
   <nav class="navbar navbar-expand-lg bg-dark border-top border-secondary-subtle" data-bs-theme="dark">
-    <div class="container-fluid"> <!-- container-fluid → на всю ширину -->
+    <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="/index.html">
+            <a class="nav-link" href="../index.html">
               <i class="bi bi-house me-1"></i>Главная
             </a>
           </li>
@@ -53,12 +51,44 @@
     </div>
   </nav>
   <main>
+    <div class="modal fade" id="addDiaryEntryModal" tabindex="-1" aria-labelledby="addDiaryEntryModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addDiaryEntryModalLabel">Добавить запись в дневник</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="newEntryText" class="form-label">Текст записи:</label>
+              <input type="text" class="form-control" id="newEntryText" placeholder="Введите текст новой записи">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Статус:</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="entryStatus" id="statusCompleted" value="completed" checked>
+                  <label class="form-check-label" for="statusCompleted">Completed</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="entryStatus" id="statusInProg" value="in_progress">
+                  <label class="form-check-label" for="statusInProg">In Progress</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+            <button type="button" class="btn btn-primary" id="saveNewEntryBtn">Сохранить</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container text-center mt-5">
       <h1 class="display-4">Мой учебный прогресс</h1>
-      
-      <!-- Блок с прогрессом (как было) -->
       <div class="mt-4 p-4 bg-white border rounded shadow-sm">
-        <ul class="list-unstyled mb-0">
+        <ul class="list-unstyled mb-0" id="progress-list"> 
           <li class="mb-2 d-flex align-items-center">
             <span class="me-2 badge bg-success">15 дек - Верстка макета сайта</span>
             <i class="bi bi-check-circle-fill text-success ms-auto"></i>
@@ -77,8 +107,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Новый блок: Текущие курсы -->
       <div class="mt-5 p-4 bg-white border rounded shadow-sm">
         <h5 class="text-center mb-4">Текущие курсы</h5>
         <div class="d-flex align-items-center mb-3">
@@ -103,7 +131,7 @@
           <span class="ms-3">50%</span>
         </div>
         <div class="text-center mt-4">
-          <button class="btn btn-outline-secondary">[Добавить запись]</button>
+          <button id="add-entry-btn" class="btn btn-outline-secondary">[Добавить запись]</button>
         </div>
       </div>
     </div>
@@ -125,5 +153,7 @@
       </div>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> <!-- Подключаем Bootstrap JS -->
+  <script src="../scripts/script.js"></script> 
 </body>
 </html>
