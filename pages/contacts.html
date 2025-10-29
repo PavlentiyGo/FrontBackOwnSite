@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <title>Контакты - Портфолио</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css  " rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css  ">
+    <link rel="stylesheet" href="../styles/styles.css"> <!-- Путь к CSS исправлен, если файл на уровень выше -->
 </head>
 
 <body class="bg-light">
@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/index.html">
+                        <a class="nav-link" href="../index.html"> <!-- Путь к главной исправлен -->
                             <i class="bi bi-house me-1"></i>Главная
                         </a>
                     </li>
@@ -48,5 +48,91 @@
             </div>
         </div>
     </nav>
+    <main>
+        <div class="container mt-5">
+            <h1 class="display-4">Свяжитесь со мной</h1>
+            <div class="row mt-4">
+                <div class="col-md-6 mx-auto">
+                    <form id="contactForm" class="p-4 border rounded bg-white shadow-sm">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Имя:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Сообщение:</label>
+                            <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark w-100">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container mt-5">
+            <h1 class="display-4">Контакты</h1>
+            <div class="mt-4 p-4 bg-white border rounded shadow-sm">
+                <h5>Контакты:</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="bi bi-envelope me-2"></i>
+                        <strong>goryachevpas@edu.ru</strong>
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-github me-2"></i>
+                        <strong>GitHub:</strong> PavlentiyGo
+                    </li>
+                    <li class="mb-2">
+                        <i class="bi bi-geo-alt me-2"></i>
+                        <strong>Москва, Россия</strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Модальное окно для подтверждения отправки формы -->
+        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <!-- Заголовок модального окна (опционально) -->
+                        <!-- <h5 class="modal-title" id="successModalLabel">Сообщение отправлено</h5> -->
+                        <!-- Кнопка закрытия (опционально) -->
+                        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button> -->
+                    </div>
+                    <div class="modal-body text-center">
+                        <!-- Картинка -->
+                        <img src="../images/photo_2025-09-24_14-52-53.jpg" alt="Сообщение отправлено" class="img-fluid mb-3" style="max-height: 200px;">
+                    </div>
+                    <div class="modal-footer justify-content-center border-0">
+                        <!-- Кнопка "ОК" -->
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">ОК</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <h2 class="fw-bold">@ 2025 Контакты</h2>
+            <p class="mt-2 mb-0">Свяжитесь со мной:</p>
+            <div class="mt-2">
+                <a href="mailto:pashagorya4ev2016@gmail.com" class="text-white me-3">
+                    <i class="bi bi-envelope"></i> Email
+                </a>
+                <a href="http://github.com/PavlentiyGo" class="text-white me-3">
+                    <i class="bi bi-github"></i> GitHub
+                </a>
+                <a href="https://t.me/@KorolVernylsa  " class="text-white">
+                    <i class="bi bi-telegram"></i> Telegram
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> <!-- Подключаем Bootstrap JS -->
+    <script src="../scripts/script.js"></script> 
 </body>
+
 </html>
