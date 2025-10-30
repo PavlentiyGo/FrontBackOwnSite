@@ -1,14 +1,13 @@
-
 document.addEventListener('DOMContentLoaded', function () {
 
-
+    
     const projects = [
         {
             title: "Личный сайт",
             description: "Первый сайт, созданный в рамках дисциплины Фронтэнд и Бекэнд разработка",
-            image: "../images/photo_2025-10-29_23-04-11.jpg", 
+            image: "../images/photo_2025-10-29_23-04-11.jpg",
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" } 
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" }
             ]
         },
         {
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
             description: "Todo-приложение, созданное с помощью Js, позволяющее отслеживать задачи, которые уже выполнены или нужно выполнить",
             image: "../images/to_do.jpg",
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" }
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBack" } 
             ]
         },
         {
@@ -30,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             title: "Портфолио",
             description: "Это этот сайт, на нём расположены все мои проекты, сайт создан с помощью Bootstap",
-            image: "../images/photo_2025-10-29_22-50-25.jpg", 
+            image: "../images/photo_2025-10-29_22-50-25.jpg",
             links: [
                 { text: "Репозиторий", url: "https://github.com/PavlentiyGo/FrontBackOwnSite" }
             ]
@@ -38,15 +37,15 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             title: "Приложение интернет магазина",
             description: "Windows Forms приложение на C# для управления базой данных магазина с использованием PostgreSQL. Проект предоставляет полный функционал для работы с клиентами, товарами и заказами.",
-            image: "../images/photo_2025-10-29_22-12-59.jpg", 
+            image: "../images/photo_2025-10-29_22-12-59.jpg",
             links: [
-                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" }
+                { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" } 
             ]
         },
         {
             title: "Судоку на Qt",
             description: "Декстопное приложение судоку с использованием Qt",
-            image: "../images/download.jpg", 
+            image: "../images/download.jpg",
             links: [
                 { text: "Репозиторий", url: "https://github.com/PavlentiyGo/BaseData" }
             ]
@@ -54,18 +53,17 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             title: "Рандомное приложение",
             description: "Я правда не придумал ещё одного проекта, но вы можете перейти по ссылке, чтобы посмотреть смешное видео",
-            image: "../images/i.jpg", 
+            image: "../images/i.jpg",
             links: [
-                { text: "Видео", url: "https://www.youtube.com/watch?v=oHg5SJYRHA0" } 
+                { text: "Видео", url: "https://www.youtube.com/watch?v=oHg5SJYRHA0" }
             ]
         }
+        
     ];
-
-    
     const container = document.getElementById("projects-container");
     if (container) {
         container.addEventListener("click", function (event) {
-            
+        
             const card = event.target.closest('[id^="card"]');
             if (card) {
                 const cardId = card.id;
@@ -76,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const project = projects[projectId];
                     console.log(`Открывается модальное окно для: ${project.title}`);
 
-                   
+                    
                     const modalTitle = document.getElementById('projectModalLabel');
                     const modalImage = document.getElementById('modalImage');
                     const modalDescription = document.getElementById('modalDescription');
@@ -86,27 +84,37 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (modalTitle) modalTitle.textContent = project.title;
                     if (modalImage) {
                         modalImage.src = project.image;
-                        modalImage.alt = project.title; 
+                        modalImage.alt = project.title;
                     }
                     if (modalDescription) modalDescription.textContent = project.description;
 
-                
+                    
                     if (modalLinksContainer) {
-                        modalLinksContainer.innerHTML = ''; 
+                        modalLinksContainer.innerHTML = '';
                         if (project.links && project.links.length > 0) {
                             project.links.forEach(link => {
-                                const linkElement = document.createElement('a');
-                                linkElement.href = link.url;
-                                linkElement.className = 'btn btn-outline-primary me-2 mb-2'; 
-                                linkElement.textContent = link.text;
-                                linkElement.target = '_blank';
-                                modalLinksContainer.appendChild(linkElement);
+                                if (link.url) { 
+                                    const linkElement = document.createElement('a');
+                                    linkElement.href = link.url;
+                                    linkElement.className = 'btn btn-outline-primary me-2 mb-2';
+                                    linkElement.textContent = link.text;
+                                    linkElement.target = '_blank';
+                                    linkElement.rel = 'noopener noreferrer';
+                                    modalLinksContainer.appendChild(linkElement);
+                                } else {
+                                    
+                                    const textElement = document.createElement('span');
+                                    textElement.className = 'text-muted me-2 mb-2';
+                                    textElement.textContent = link.text;
+                                    modalLinksContainer.appendChild(textElement);
+                                }
                             });
                         } else {
-                        
                             modalLinksContainer.textContent = 'Ссылки отсутствуют.';
                         }
                     }
+
+                    
                     const modalElement = document.getElementById('projectModal');
                     if (modalElement) {
                         const bsModal = new bootstrap.Modal(modalElement);
@@ -129,7 +137,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const cards = projectsContainer.querySelectorAll('.project-card');
             cards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
-                if (category === 'all' || cardCategory === category) {
+                
+                if (category === 'all' || (cardCategory && cardCategory === category)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
@@ -157,11 +166,13 @@ document.addEventListener('DOMContentLoaded', function () {
         filterProjects('all');
     }
 
+
+    
     const form = document.getElementById('contactForm');
 
-    if (form) { 
+    if (form) {
         form.addEventListener('submit', function (event) {
-            event.preventDefault();
+            event.preventDefault(); 
 
             const nameInput = document.getElementById('name');
             const emailInput = document.getElementById('email');
@@ -172,21 +183,22 @@ document.addEventListener('DOMContentLoaded', function () {
             const message = messageInput.value.trim();
 
             if (name && email && message) {
+                
                 const successModalElement = document.getElementById('successModal');
                 if (successModalElement) {
                     const bsSuccessModal = new bootstrap.Modal(successModalElement);
                     bsSuccessModal.show();
+
+                    
+                    form.reset();
+                    
                 }
             } else {
                 alert('Пожалуйста, заполните все поля.');
             }
         });
     }
-
-    
-    
     const addEntryButton = document.getElementById('add-entry-btn');
-    
     const diaryModalElement = document.getElementById('addDiaryEntryModal');
     const newEntryTextInput = document.getElementById('newEntryText');
     const saveEntryButton = document.getElementById('saveNewEntryBtn');
@@ -194,24 +206,23 @@ document.addEventListener('DOMContentLoaded', function () {
     const statusInProgRadio = document.getElementById('statusInProg');
 
     if (addEntryButton && diaryModalElement && newEntryTextInput && saveEntryButton) {
-        
         addEntryButton.addEventListener('click', function(event) {
-            event.preventDefault();
+            event.preventDefault(); 
             console.log("Кнопка 'Добавить запись' нажата! Открываем модальное окно.");
             const bsModal = new bootstrap.Modal(diaryModalElement);
             bsModal.show();
-            
             newEntryTextInput.value = '';
-            statusCompletedRadio.checked = true; 
+            if (statusCompletedRadio) statusCompletedRadio.checked = true;
+            if (statusInProgRadio) statusInProgRadio.checked = false;
         });
 
-    
+        
         saveEntryButton.addEventListener('click', function(event) {
             event.preventDefault();
 
             const newEntryTextValue = newEntryTextInput.value.trim();
-            let statusValue = 'completed'; 
-            if (statusInProgRadio.checked) {
+            let statusValue = 'completed';
+            if (statusInProgRadio && statusInProgRadio.checked) {
                 statusValue = 'in_progress';
             }
 
@@ -222,35 +233,42 @@ document.addEventListener('DOMContentLoaded', function () {
                 const progressListContainer = document.querySelector('.mt-4.p-4.bg-white.border.rounded.shadow-sm');
                 if (progressListContainer) {
                     
+                    let list = progressListContainer.querySelector('#progress-list');
+                    if (!list) {
+                        
+                         list = progressListContainer.querySelector('ul, ol');
+                    }
+                    if (!list) {
+                        
+                        list = document.createElement('ul');
+                        list.id = 'progress-list';
+                        list.className = 'list-unstyled mb-0'; 
+                        progressListContainer.appendChild(list);
+                    }
                     const newListItem = document.createElement('li');
                     newListItem.className = 'mb-2 d-flex align-items-center';
 
-                    
+
                     const span = document.createElement('span');
-                    span.className = 'me-2 badge'; 
-
-                    
-                    if (statusValue === 'completed') {
-                        span.classList.add('bg-success');
-                        const icon = document.createElement('i');
-                        icon.className = 'bi bi-check-circle-fill text-success ms-auto';
-                        newListItem.appendChild(span);
-                        newListItem.appendChild(icon);
-                    } else if (statusValue === 'in_progress') {
-                        span.classList.add('bg-warning', 'text-dark'); 
-                        const statusBadge = document.createElement('span');
-                        statusBadge.className = 'badge bg-warning text-dark ms-auto';
-                        statusBadge.textContent = 'in progress';
-                        newListItem.appendChild(span);
-                        newListItem.appendChild(statusBadge);
-                    }
-
-                    
+                    span.className = 'flex-grow-1 me-2';
                     span.textContent = newEntryTextValue;
-                    const list = progressListContainer.querySelector('#progress-list'); 
-                    if (list) {
-                        list.insertBefore(newListItem, list.firstChild);
+
+                    let statusElement;
+                    if (statusValue === 'completed') {
+                        statusElement = document.createElement('i');
+                        statusElement.className = 'bi bi-check-circle-fill text-success';
+                        statusElement.title = 'Выполнено'; 
+                    } else if (statusValue === 'in_progress') {
+                        statusElement = document.createElement('span');
+                        statusElement.className = 'badge bg-warning text-dark';
+                        statusElement.textContent = 'in progress';
                     }
+
+                    newListItem.appendChild(span);
+                    if (statusElement) {
+                        newListItem.appendChild(statusElement);
+                    }
+                    list.insertBefore(newListItem, list.firstChild);
                     const bsModalInstance = bootstrap.Modal.getInstance(diaryModalElement);
                     if (bsModalInstance) {
                         bsModalInstance.hide();
@@ -264,4 +282,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-}); 
+});
