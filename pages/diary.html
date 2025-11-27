@@ -1,105 +1,107 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
   <meta charset="UTF-8">
   <title>Дневник - Портфолио</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="../styles/styles.css"> 
+  <!-- Убираем Bootstrap CSS -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"> -->
+  <!-- Убираем Bootstrap Icons CSS -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+  <link rel="stylesheet" href="../styles/styles.css">
 </head>
 
 <body class="bg-light">
   <header class="bg-dark text-white py-5">
     <div class="container text-center">
-      <i class="bi bi-emoji-sunglasses" style="font-size: 2.5rem; display: block; margin-bottom: 1rem;"></i>
+      <i class="icon-emoji-sunglasses"></i>
       <h1 class="display-4">Горячев Павел</h1>
     </div>
   </header>
 
- 
-  <nav class="navbar navbar-expand-lg bg-dark border-top border-secondary-subtle" data-bs-theme="dark">
+  <nav class="navbar bg-dark border-top border-secondary-subtle" id="mainNav">
     <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler" id="navbarToggleBtn" aria-label="Переключить навигацию">
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
+        <span class="toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+      <div class="navbar-menu" id="navbarMenu">
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" href="../index.html">
-              <i class="bi bi-house me-1"></i>Главная
+              <i class="icon-home"></i>Главная
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/pages/contacts.html">
-              <i class="bi bi-envelope me-1"></i>Контакты
+              <i class="icon-envelope"></i>Контакты
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link active" href="/pages/diary.html">
-              <i class="bi bi-journal-text me-1"></i>Дневник
+              <i class="icon-journal"></i>Дневник
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/pages/projects.html">
-              <i class="bi bi-code-slash me-1"></i>Проекты
+              <i class="icon-code"></i>Проекты
             </a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <main>
-    <div class="modal fade" id="addDiaryEntryModal" tabindex="-1" aria-labelledby="addDiaryEntryModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addDiaryEntryModalLabel">Добавить запись в дневник</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+    <!-- Модальное окно добавления записи -->
+    <div class="modal" id="addDiaryEntryModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addDiaryEntryModalLabel">Добавить запись в дневник</h5>
+          <button type="button" class="btn-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="newEntryText" class="form-label">Текст записи:</label>
+            <input type="text" class="form-control" id="newEntryText" placeholder="Введите текст новой записи">
           </div>
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="newEntryText" class="form-label">Текст записи:</label>
-              <input type="text" class="form-control" id="newEntryText" placeholder="Введите текст новой записи">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Статус:</label>
-              <div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="entryStatus" id="statusCompleted" value="completed" checked>
-                  <label class="form-check-label" for="statusCompleted">Completed</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="entryStatus" id="statusInProg" value="in_progress">
-                  <label class="form-check-label" for="statusInProg">In Progress</label>
-                </div>
+          <div class="mb-3">
+            <label class="form-label">Статус:</label>
+            <div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="entryStatus" id="statusCompleted" value="completed" checked>
+                <label class="form-check-label" for="statusCompleted">Completed</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="entryStatus" id="statusInProg" value="in_progress">
+                <label class="form-check-label" for="statusInProg">In Progress</label>
               </div>
             </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-            <button type="button" class="btn btn-primary" id="saveNewEntryBtn">Сохранить</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelModalBtn">Отмена</button>
+          <button type="button" class="btn btn-primary" id="saveNewEntryBtn">Сохранить</button>
         </div>
       </div>
     </div>
 
     <div class="container text-center mt-5">
       <h1 class="display-4">Мой учебный прогресс</h1>
-      <div class="mt-4 p-4 bg-white border rounded shadow-sm">
-        <ul class="list-unstyled mb-0" id="progress-list"> 
+      <div class="p-4 bg-white border rounded shadow-sm">
+        <ul class="list-unstyled mb-0" id="progress-list">
           <li class="mb-2 d-flex align-items-center">
             <span class="me-2 badge bg-success">29 октября - Пресс качат</span>
-            <i class="bi bi-check-circle-fill text-success ms-auto"></i>
+            <i class="bi-check-circle-fill text-success ms-auto"></i>
           </li>
-                    <li class="mb-2 d-flex align-items-center">
+          <li class="mb-2 d-flex align-items-center">
             <span class="me-2 badge bg-warning">20 октября - Бегит</span>
             <span class="badge bg-warning text-dark ms-auto">in progress</span>
           </li>
           <li class="mb-2 d-flex align-items-center">
             <span class="me-2 badge bg-success">15 октября - Атжумания </span>
-            <i class="bi bi-check-circle-fill text-success ms-auto"></i>
+            <i class="bi-check-circle-fill text-success ms-auto"></i>
           </li>
           <li class="mb-2 d-flex align-items-center">
             <span class="me-2 badge bg-warning">01 дек - Адаптивный дизайн</span>
@@ -111,22 +113,22 @@
         <h5 class="text-center mb-4">Текущие курсы</h5>
         <div class="d-flex align-items-center mb-3">
           <span class="me-3">Веб-разработка</span>
-          <div class="progress flex-grow-1" style="height: 10px;">
-            <div class="progress-bar bg-success" role="progressbar" style="width: 80%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress flex-grow-1">
+            <div class="progress-bar bg-success" style="width: 80%;"></div>
           </div>
           <span class="ms-3">80%</span>
         </div>
         <div class="d-flex align-items-center mb-3">
           <span class="me-3">JavaScript</span>
-          <div class="progress flex-grow-1" style="height: 10px;">
-            <div class="progress-bar bg-info" role="progressbar" style="width: 52%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress flex-grow-1">
+            <div class="progress-bar bg-info" style="width: 52%;"></div>
           </div>
           <span class="ms-3">52%</span>
         </div>
         <div class="d-flex align-items-center mb-3">
           <span class="me-3">React</span>
-          <div class="progress flex-grow-1" style="height: 10px;">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress flex-grow-1">
+            <div class="progress-bar bg-warning" style="width: 50%;"></div>
           </div>
           <span class="ms-3">50%</span>
         </div>
@@ -136,24 +138,39 @@
       </div>
     </div>
   </main>
-  <footer class="bg-dark text-white py-4 mt-5">
+
+  <footer class="bg-dark text-white py-4">
     <div class="container text-center">
       <h2 class="fw-bold">@ 2025 Контакты</h2>
       <p class="mt-2 mb-0">Свяжитесь со мной:</p>
       <div class="mt-2">
         <a href="mailto:pashagorya4ev2016@gmail.com" class="text-white me-3">
-          <i class="bi bi-envelope"></i> Email
+          <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+          </svg>
+          Email
         </a>
         <a href="http://github.com/PavlentiyGo" class="text-white me-3">
-          <i class="bi bi-github"></i> GitHub
+          GitHub
         </a>
         <a href="https://t.me/@KorolVernylsa" class="text-white">
-          <i class="bi bi-telegram"></i> Telegram
+          Telegram
         </a>
       </div>
     </div>
   </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> <!-- Подключаем Bootstrap JS -->
-  <script src="../scripts/script.js"></script> 
+
+  <script src="../scripts/script.js"></script>
+  <script>
+    // Код для переключения навигации (такой же, как на index.html)
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbarToggleBtn = document.getElementById('navbarToggleBtn');
+      const navbarMenu = document.getElementById('navbarMenu');
+      
+      navbarToggleBtn.addEventListener('click', function() {
+        navbarMenu.classList.toggle('show');
+      });
+    });
+  </script>
 </body>
 </html>
