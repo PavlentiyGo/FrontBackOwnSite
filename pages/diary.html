@@ -49,45 +49,48 @@
     </div>
   </nav>
 
-  <main>
-    <!-- Модальное окно добавления записи -->
-    <div class="modal" id="addDiaryEntryModal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addDiaryEntryModalLabel">Добавить запись в дневник</h5>
-          <button type="button" class="btn-close">&times;</button>
+<main>
+  <!-- Модальное окно добавления записи -->
+  <div class="modal" id="addDiaryEntryModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addDiaryEntryModalLabel">Добавить запись в дневник</h5>
+        <button type="button" class="btn-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="newEntryText" class="form-label">Текст записи:</label>
+          <input type="text" class="form-control" id="newEntryText" placeholder="Введите текст новой записи">
         </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label for="newEntryText" class="form-label">Текст записи:</label>
-            <input type="text" class="form-control" id="newEntryText" placeholder="Введите текст новой записи">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Статус:</label>
-            <div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="entryStatus" id="statusCompleted" value="completed" checked>
-                <label class="form-check-label" for="statusCompleted">Completed</label>
-              </div>
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="entryStatus" id="statusInProg" value="in_progress">
-                <label class="form-check-label" for="statusInProg">In Progress</label>
-              </div>
+        <div class="mb-3">
+          <label class="form-label">Статус:</label>
+          <div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="entryStatus" id="statusCompleted" value="completed" checked>
+              <label class="form-check-label" for="statusCompleted">Completed</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="entryStatus" id="statusInProg" value="in_progress">
+              <label class="form-check-label" for="statusInProg">In Progress</label>
             </div>
           </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" id="cancelModalBtn">Отмена</button>
-          <button type="button" class="btn btn-primary" id="saveNewEntryBtn">Сохранить</button>
-        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="cancelModalBtn">Отмена</button>
+        <button type="button" class="btn btn-primary" id="saveNewEntryBtn">Сохранить</button>
       </div>
     </div>
+  </div>
 
-<div class="container-fluid px-3 mt-4">
-  <div class="text-center">
+  <!-- ОБЩИЙ КОНТЕЙНЕР ДЛЯ ОБОИХ БЛОКОВ -->
+<div class="container mt-4">
+
+  <!-- Блок "Мой учебный прогресс" -->
+  <div class="text-center mb-3">
     <h1 class="display-4">Мой учебный прогресс</h1>
   </div>
-  <div class="progress-container mt-4">
+  <div class="progress-container"> <!-- Без mb-4, отступ теперь через CSS -->
     <ul class="list-unstyled mb-0" id="progress-list">
       <li class="progress-item mb-3 d-flex align-items-center">
         <span class="badge bg-success me-2 text-wrap">29 октября - Пресс качат</span>
@@ -107,36 +110,40 @@
       </li>
     </ul>
   </div>
-</div>
-      <div class="mt-5 p-4 bg-white border rounded shadow-sm">
-        <h5 class="text-center mb-4">Текущие курсы</h5>
-        <div class="d-flex align-items-center mb-3">
-          <span class="me-3">Веб-разработка</span>
-          <div class="progress flex-grow-1">
-            <div class="progress-bar bg-success" style="width: 80%;"></div>
-          </div>
-          <span class="ms-3">80%</span>
-        </div>
-        <div class="d-flex align-items-center mb-3">
-          <span class="me-3">JavaScript</span>
-          <div class="progress flex-grow-1">
-            <div class="progress-bar bg-info" style="width: 52%;"></div>
-          </div>
-          <span class="ms-3">52%</span>
-        </div>
-        <div class="d-flex align-items-center mb-3">
-          <span class="me-3">React</span>
-          <div class="progress flex-grow-1">
-            <div class="progress-bar bg-warning" style="width: 50%;"></div>
-          </div>
-          <span class="ms-3">50%</span>
-        </div>
-        <div class="text-center mt-4">
-          <button id="add-entry-btn" class="btn btn-outline-secondary">[Добавить запись]</button>
-        </div>
+
+  <!-- БЛОК "ТЕКУЩИЕ КУРСЫ" -->
+  <div class="p-4 bg-white border rounded shadow-sm">
+    <h5 class="text-center mb-4">Текущие курсы</h5>
+    <div class="d-flex align-items-center mb-3">
+      <span class="me-3">Веб-разработка</span>
+      <div class="progress flex-grow-1">
+        <div class="progress-bar bg-success" style="width: 80%;"></div>
       </div>
+      <span class="ms-3">80%</span>
     </div>
-  </main>
+    <div class="d-flex align-items-center mb-3">
+      <span class="me-3">JavaScript</span>
+      <div class="progress flex-grow-1">
+        <div class="progress-bar bg-info" style="width: 52%;"></div>
+      </div>
+      <span class="ms-3">52%</span>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <span class="me-3">React</span>
+      <div class="progress flex-grow-1">
+        <div class="progress-bar bg-warning" style="width: 50%;"></div>
+      </div>
+      <span class="ms-3">50%</span>
+    </div>
+    <div class="text-center mt-4">
+      <button id="add-entry-btn" class="btn btn-outline-secondary">[Добавить запись]</button>
+    </div>
+  </div>
+
+</div>
+  <!-- /container -->
+
+</main>
 
   <footer class="bg-dark text-white py-4">
     <div class="container text-center">
