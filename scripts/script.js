@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     ];
 
-    // === Обработка клика по карточкам проектов ===
     const container = document.getElementById("projects-container");
     if (container) {
         container.addEventListener("click", function (event) {
@@ -74,8 +73,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const project = projects[projectId];
             console.log(`Открываем проект: ${project.title}`);
-
-            // Обновляем модальное окно
             const modalTitle = document.getElementById('projectModalLabel');
             const modalImage = document.getElementById('modalImage');
             const modalDescription = document.getElementById('modalDescription');
@@ -111,14 +108,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     modalLinksContainer.textContent = 'Ссылки отсутствуют.';
                 }
             }
-
-            // Показываем модалку
             const modal = document.getElementById('projectModal');
             if (modal) modal.classList.add('show');
         });
     }
-
-    // === Закрытие модального окна ===
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModal');
     const closeModalFooterBtn = document.getElementById('closeModalFooter');
@@ -137,8 +130,6 @@ const closeModal = () => {
             }
         });
     }
-
-    // === Закрытие модалок по Esc ===
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (modal && modal.style.display === 'block') closeModal();
@@ -146,11 +137,6 @@ const closeModal = () => {
     });
 
 });
-
-
-// ... (твой предыдущий код из script.js)
-
-// === Обработчик формы и модального окна на странице контактов ===
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     const successModal = document.getElementById('successModal');
@@ -158,68 +144,52 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Предотвращаем стандартную отправку формы
-
-            // Здесь можно добавить логику отправки данных формы (AJAX или fetch)
-            // Пока просто покажем модальное окно
-
-            // Открываем модальное окно
+            e.preventDefault();
             if (successModal) {
                 successModal.classList.add('show');
-                document.body.style.overflow = 'hidden'; // Блокируем прокрутку фона
+                document.body.style.overflow = 'hidden';
             }
         });
     }
 
     if (modalOkBtn) {
         modalOkBtn.addEventListener('click', function() {
-            // Закрываем модальное окно
+            
             if (successModal) {
                 successModal.classList.remove('show');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
+                document.body.style.overflow = '';
             }
         });
     }
-
-    // Закрытие модального окна по клику вне его области
     if (successModal) {
         successModal.addEventListener('click', function(e) {
             if (e.target === successModal) {
                 successModal.classList.remove('show');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
+                document.body.style.overflow = '';
             }
         });
     }
-
-    // Закрытие модального окна по клавише Esc
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             if (successModal && successModal.classList.contains('show')) {
                 successModal.classList.remove('show');
-                document.body.style.overflow = ''; // Возвращаем прокрутку
+                document.body.style.overflow = ''; 
             }
         }
     });
 });
-// ... (твой предыдущий код из script.js)
-
-// === Обработчик модального окна добавления записи в дневник ===
 document.addEventListener('DOMContentLoaded', function() {
     const addEntryBtn = document.getElementById('add-entry-btn');
     const addDiaryEntryModal = document.getElementById('addDiaryEntryModal');
     const closeModalBtn = document.querySelector('#addDiaryEntryModal .btn-close');
     const cancelModalBtn = document.querySelector('#addDiaryEntryModal .btn-secondary');
     const saveNewEntryBtn = document.getElementById('saveNewEntryBtn');
-
-    // Функция открытия модального окна
     function openModal() {
         if (addDiaryEntryModal) {
             addDiaryEntryModal.classList.add('show');
             document.body.style.overflow = 'hidden';
         }
     }
-
-    // Функция закрытия модального окна
     function closeModal() {
         if (addDiaryEntryModal) {
             addDiaryEntryModal.classList.remove('show');
@@ -246,13 +216,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Обработчик сохранения новой записи (примерная логика)
     if (saveNewEntryBtn) {
         saveNewEntryBtn.addEventListener('click', function() {
             const newEntryText = document.getElementById('newEntryText').value;
             const statusRadios = document.getElementsByName('entryStatus');
-            let selectedStatus = 'completed'; // по умолчанию
+            let selectedStatus = 'completed'; 
 
             for (const radio of statusRadios) {
                 if (radio.checked) {
@@ -262,11 +230,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (newEntryText.trim() !== '') {
-                // Здесь можно добавить логику добавления записи в DOM или отправки на сервер
                 console.log('Добавлена запись:', newEntryText, 'Статус:', selectedStatus);
-                // Пока просто закрываем модальное окно
                 closeModal();
-                // Очищаем форму
                 document.getElementById('newEntryText').value = '';
                 document.getElementById('statusCompleted').checked = true;
             } else {
@@ -274,8 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // Закрытие модального окна по клавише Esc
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') {
             if (addDiaryEntryModal && addDiaryEntryModal.classList.contains('show')) {
@@ -284,12 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// ... (твой предыдущий код из script.js)
-
-// === Обработчик фильтрации проектов и модального окна на странице проектов ===
 document.addEventListener('DOMContentLoaded', function() {
-    // Фильтрация проектов
     const filterButtons = document.querySelectorAll('.filter-btn');
     const projectCards = document.querySelectorAll('.project-card');
 
@@ -297,13 +255,8 @@ document.addEventListener('DOMContentLoaded', function() {
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const filter = this.getAttribute('data-filter');
-
-                // Убираем активный класс у всех кнопок
                 filterButtons.forEach(btn => btn.classList.remove('active'));
-                // Добавляем активный класс к нажатой
                 this.classList.add('active');
-
-                // Показываем/скрываем карточки
                 projectCards.forEach(card => {
                     if (filter === 'all' || card.getAttribute('data-category') === filter) {
                         card.classList.add('show');
@@ -314,9 +267,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
-
-    // === Обработка клика по карточкам проектов (открытие модального окна) ===
-    // Определим проекты для модального окна
     const projects = [
         {
             title: "Личный сайт",
@@ -357,12 +307,9 @@ document.addEventListener('DOMContentLoaded', function() {
         container.addEventListener("click", function (event) {
             const card = event.target.closest('.card');
             if (!card) return;
-
-            // Найдём индекс карточки в списке проектов
             let projectId = -1;
             for (let i = 0; i < projectCards.length; i++) {
                 if (projectCards[i].contains(card)) {
-                    // Найдём id карточки (card1, card2 и т.д.) и вычтем 1, чтобы получить индекс
                     const cardId = projectCards[i].id;
                     projectId = parseInt(cardId.replace('card', ''), 10) - 1;
                     break;
@@ -376,8 +323,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const project = projects[projectId];
             console.log(`Открываем проект: ${project.title}`);
-
-            // Обновляем модальное окно
             const modalTitle = document.getElementById('projectModalLabel');
             const modalImage = document.getElementById('modalImage');
             const modalDescription = document.getElementById('modalDescription');
@@ -413,14 +358,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     modalLinksContainer.textContent = 'Ссылки отсутствуют.';
                 }
             }
-
-            // Показываем модалку
             const modal = document.getElementById('projectModal');
             if (modal) modal.classList.add('show');
         });
     }
-
-    // === Закрытие модального окна ===
     const modal = document.getElementById('projectModal');
     const closeModalBtn = document.getElementById('closeModal');
     const closeModalFooterBtn = document.getElementById('closeModalFooter');
@@ -439,8 +380,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-
-    // === Закрытие модалок по Esc ===
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             if (modal && modal.classList.contains('show')) closeModal();
